@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar'
 import "./App.css"
 import CreatePost from './components/CreatePost'
 import PostList from './components/PostList'
+import PostListProvider from './components/post-list-store'
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const [selectTab, setSelectTab] = useState("Home");
 
   return (
     <>
+    <PostListProvider>
     <div className="app-container">
     <Sidebar selectTab={selectTab} setSelectTab={setSelectTab}></Sidebar>
     <div className='content'>
@@ -24,9 +26,9 @@ const [selectTab, setSelectTab] = useState("Home");
     </div>
     
     </div>
-    
+    </PostListProvider>
     </>
-  )
+  );
 }
 
 export default App

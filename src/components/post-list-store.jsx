@@ -8,7 +8,12 @@ export const PostList = createContext({
 
 
 const postListReducer = (currPostList, action) => {
-
+  let newPostList = currPostList; 
+  
+  if(action.type === "DELETE_POST"){
+    newPostList = currPostList.filter((post) => post.id !== action.payload.postId)
+   }
+   return newPostList;
 }
 
 const PostListProvider = ({ children }) => {
@@ -19,8 +24,13 @@ const PostListProvider = ({ children }) => {
 
  };
 
- const deletepost = () => {
-
+ const deletepost = (postId) => {
+   dispatchPostList({
+    type: "DELETE_POST",
+    payload:{
+      postId,
+    }
+   })
  }
 
   return <PostList.Provider value={{postList, addPost, deletepost}}>{children}</PostList.Provider>;
@@ -42,8 +52,8 @@ const DEFAULT_POST_LIST = [
     reactions: 15,
     userId: "user-12",
     tags: ["Graduating", "Unbelievable"],
-  }
-]
+  },
+];
 
 
 export default PostListProvider;
