@@ -7,9 +7,9 @@ const PostList = () => {
  const {postList} = useContext(PostListData)
   return (
     <>
-    
+    <div className='postList'>
     {postList.map((post) => (<Post key={post.id} post={post}></Post>))}
-    
+    </div>
     </>
   )
 }

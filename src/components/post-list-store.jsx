@@ -6,34 +6,53 @@ export const PostList = createContext({
   deletepost: () => {},
 });
 
-
 const postListReducer = (currPostList, action) => {
-  let newPostList = currPostList; 
-  
-  if(action.type === "DELETE_POST"){
-    newPostList = currPostList.filter((post) => post.id !== action.payload.postId)
-   }
-   return newPostList;
-}
+  let newPostList = currPostList;
+
+  if (action.type === "DELETE_POST") {
+    newPostList = currPostList.filter(
+      (post) => post.id !== action.payload.postId,
+    );
+  } else if(action.type === "ADD_POST"){
+     newPostList = [action.payload, ...currPostList];
+  }
+  return newPostList;
+};
 
 const PostListProvider = ({ children }) => {
+  const [postList, dispatchPostList] = useReducer(
+    postListReducer,
+    DEFAULT_POST_LIST,
+  );
 
- const [postList, dispatchPostList] = useReducer(postListReducer, DEFAULT_POST_LIST);
+  const addPost = (userId, postTitle, postBody, tag) => {
+    dispatchPostList({
+      type: "ADD_POST",
+      payload: {
+        id: Date.now(),
+        title: postTitle,
+        body: postBody,
+        reactions: Math.floor(Math.random() * 1000),
+        userId: userId,
+        tags: tag,
+      },
+    });
+  };
 
- const addPost = () => {
+  const deletepost = (postId) => {
+    dispatchPostList({
+      type: "DELETE_POST",
+      payload: {
+        postId,
+      },
+    });
+  };
 
- };
-
- const deletepost = (postId) => {
-   dispatchPostList({
-    type: "DELETE_POST",
-    payload:{
-      postId,
-    }
-   })
- }
-
-  return <PostList.Provider value={{postList, addPost, deletepost}}>{children}</PostList.Provider>;
+  return (
+    <PostList.Provider value={{ postList, addPost, deletepost }}>
+      {children}
+    </PostList.Provider>
+  );
 };
 
 const DEFAULT_POST_LIST = [
@@ -55,6 +74,4 @@ const DEFAULT_POST_LIST = [
   },
 ];
 
-
 export default PostListProvider;
-
