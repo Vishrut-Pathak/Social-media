@@ -1,15 +1,12 @@
 .app-container {
   display: flex;
 }
-.content{
-  width: 100%;
-}
 .sidebar{
   min-height: 800px;
   max-height: 100vh;
 }
 .post-card{
-  margin: 20px 50px;
+  margin: 20px 20px;
   
 }
 .hashtags{
@@ -19,9 +16,33 @@
   margin: 15px 0 0 0;
 }
 .create-post{
-  margin: 50px;
+  margin: 30px;
 
 }
 .postList{
   display: flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  justify-content: flex-start;
+  
+}
+.welcome{
+  position: relative;
+  margin: 20%;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  
+}
+.footer{
+ margin-top: auto;
 }

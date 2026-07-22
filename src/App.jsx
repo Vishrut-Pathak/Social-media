@@ -21,8 +21,9 @@ const [selectTab, setSelectTab] = useState("Home");
     <div className='content'>
       <Header></Header>
       {selectTab === "Home" ? (<PostList></PostList>) : <CreatePost></CreatePost> }
-      
+      <div className='footer'>
       <Footer></Footer>
+      </div>
     </div>
     
     </div>
