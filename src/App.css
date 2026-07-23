@@ -4,6 +4,7 @@
 .sidebar{
   min-height: 800px;
   max-height: 100vh;
+  
 }
 .post-card{
   margin: 20px 20px;
@@ -45,4 +46,8 @@
 }
 .footer{
  margin-top: auto;
+}
+
+.spinner{
+  margin-top: 20%;
 }

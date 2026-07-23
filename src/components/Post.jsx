@@ -17,9 +17,9 @@ const Post = ({post}) => {
   </span>
     </h5>
     <p class="card-text">{post.body}</p>
-    {post.tags.map(tags => <span key={tags} class="badge text-bg-primary hashtags">{tags}</span>)}
-    <div className="alert alert-success reactions" role="alert">
- This post has rected by {post.reactions} people.
+    {post.tags.map((tag) => <span key={tag} class="badge text-bg-primary hashtags">{tag}</span>)}
+   <div className="alert alert-success reactions" role="alert">
+ This post has {post.reactions.likes} likes and {post.reactions.dislikes} dislikes.
 </div>
   </div>
 </div>
